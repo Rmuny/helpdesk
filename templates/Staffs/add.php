@@ -11,7 +11,7 @@
 
 ?>
 <style>
-    input[type='email']{
+    input{
         border-radius: 0rem;
     }
 </style>
@@ -21,15 +21,18 @@
 
             <?= $this->Form->create($staff,['type'=>'file']) ?>
             <H3>Add New Staff</H3>
-
             <fieldset>
                 <table>
                     <tr>
                         <td>
                             <?php
-                            echo $this->Form->control('staffName:',[
-                            'label'=>'Full Name:']); ?>
+                            echo $this->Form->control('staffName',[
+                            'label'=>'Full Name:'
+                            ]); ?>
+                            </div>
+
                         </td>
+
                         <td>
                             <label>Gender: </label>
                             <?php
@@ -41,18 +44,16 @@
                             ]);
                             ?>
                         </td>
-                    </tr>
-
                     <tr>
                         <td>
                             <?php
-                            echo $this->Form->control('email:');
+                            echo $this->Form->control('email');
                             ?>
                         </td>
 
                         <td>
                             <?php
-                            echo $this->Form->control('phoneNumber:');
+                            echo $this->Form->control('phoneNumber');
                             ?>
                         </td>
                     </tr>
@@ -65,9 +66,15 @@
 
                         </td>
                         <td>
-                            <label>Profile: </label>
+                            <?php
+                            echo $this->Form->control(
+                                'image',[
+                                    'label'=>'Image: ',
 
-
+                                'type' => 'file',
+                                'onchange' => 'getImagePreview(event)',
+                            ]);
+                            ?>
                         </td>
                     </tr>
 
@@ -81,6 +88,12 @@
                             ?>
                         </td>
                         <td>
+                            <?php
+                            echo $this->Form->control('category_id', [
+                                'options' => $categories, 'empty' => true,
+
+                            ]);
+                            ?>
 
                         </td>
                     </tr>
@@ -113,6 +126,6 @@
         </div>
 
     </div>
-</div>
+
 
 

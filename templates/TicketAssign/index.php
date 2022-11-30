@@ -16,6 +16,8 @@
                     <th><?= $this->Paginator->sort('priority') ?></th>
                     <th><?= $this->Paginator->sort('ticket_id') ?></th>
                     <th><?= $this->Paginator->sort('staff_id') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -25,8 +27,10 @@
                     <td><?= $this->Number->format($ticketAssign->id) ?></td>
                     <td><?= h($ticketAssign->deadline) ?></td>
                     <td><?= h($ticketAssign->priority) ?></td>
-                    <td><?= $ticketAssign->has('ticket') ? $this->Html->link($ticketAssign->ticket->id, ['controller' => 'Tickets', 'action' => 'view', $ticketAssign->ticket->id]) : '' ?></td>
-                    <td><?= $ticketAssign->has('staff') ? $this->Html->link($ticketAssign->staff->id, ['controller' => 'Staffs', 'action' => 'view', $ticketAssign->staff->id]) : '' ?></td>
+                    <td><?= $ticketAssign->has('ticket') ? $this->Html->link($ticketAssign->ticket->answer, ['controller' => 'Tickets', 'action' => 'view', $ticketAssign->ticket->id]) : '' ?></td>
+                    <td><?= $ticketAssign->has('staff') ? $this->Html->link($ticketAssign->staff->staffName, ['controller' => 'Staffs', 'action' => 'view', $ticketAssign->staff->id]) : '' ?></td>
+                    <td><?= h($ticketAssign->created) ?></td>
+                    <td><?= h($ticketAssign->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $ticketAssign->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $ticketAssign->id]) ?>

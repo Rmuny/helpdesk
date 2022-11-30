@@ -7,16 +7,9 @@
 ?>
 <div class="row">
     <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $solution->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $solution->id), 'class' => 'side-nav-item']
-            ) ?>
-            <?= $this->Html->link(__('List Solutions'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
+            <?= $this->Html->link('<span class="fas fa-backward text-white"></span><span class="ms-2 text-white">' . __('Back') . '</span>', ['action' => 'index'],
+                ['escape' => false, 'class' => 'btn btn-success']) ?>
+
     <div class="column-responsive column-80">
         <div class="solutions form content">
             <?= $this->Form->create($solution) ?>
@@ -24,7 +17,9 @@
                 <legend><?= __('Edit Solution') ?></legend>
                 <?php
                     echo $this->Form->control('title');
-                    echo $this->Form->control('content');
+                    echo $this->Form->control('content',[
+                        'type'=>'textarea',
+                    ]);
                     echo $this->Form->control('category_id', ['options' => $categories]);
                 ?>
             </fieldset>

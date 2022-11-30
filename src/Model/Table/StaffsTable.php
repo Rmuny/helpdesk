@@ -8,6 +8,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Composer\DependencyResolver\Rule;
+use SoftDelete\Model\Table\SoftDeleteTrait;
 
 /**
  * Staffs Model
@@ -34,6 +35,9 @@ use Composer\DependencyResolver\Rule;
  */
 class StaffsTable extends Table
 {
+//    soft delete
+//    use SoftDeleteTrait;
+//    protected $softDeleteField = 'deleted_date';
     /**
      * Initialize method
      *
@@ -45,7 +49,7 @@ class StaffsTable extends Table
         parent::initialize($config);
 
         $this->setTable('staffs');
-        $this->setDisplayField('id');
+        $this->setDisplayField('staffName');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Roles', [
@@ -99,11 +103,18 @@ class StaffsTable extends Table
             'message' =>'Phone number must be in number',
             'rule' =>'numeric']);
 
-
-        $validator
-            ->scalar('profileImage')
-            ->maxLength('profileImage', 255)
-            ->allowEmptyString('profileImage');
+       $validator
+           ->allowEmptyString('profileImage')
+           ->add('profileImage', [
+               'mimeType' => [
+                   'rule' => ['mimeType', ['image/jpg', 'image/png', 'image/jpeg']],
+                   'message' => 'Please upload only jpg, jpeg and png',
+               ],
+               'fileSize' => [
+                   'rule' => ['fileSize', '<=', '2MB'],
+                   'message' => 'Image file size must be less than 1MB',
+               ]
+           ]);
 
         $validator
             ->scalar('username')
@@ -150,8 +161,12 @@ class StaffsTable extends Table
     {
         $rules->add($rules->isUnique(['username']), ['errorField' => 'username']);
         $rules->add($rules->existsIn('role_id', 'Roles'), ['errorField' => 'role_id']);
-        $rules->add($rules->existsIn('category_id', 'Categories'), ['errorField' => 'category_id']);
+//        $rules->add($rules->existsIn('category_id', 'Categories'), ['errorField' => 'category_id']);
 
         return $rules;
+    }
+
+    public function findByEmail(mixed $email)
+    {
     }
 }

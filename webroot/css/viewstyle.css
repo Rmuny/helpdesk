@@ -21,7 +21,15 @@ div#page {
     /*background-color: rgba(192, 192, 192, 0.84);*/
 
 }
+div#menu {
+    /*border:2px solid green;*/
+    width:210px;
+    float:left;
+    padding-top: 2%;
 
+    margin:10px 0 10px 5px;
+    height:350px;
+}
 div#header {
     /*border: 1px #0a53be;*/
     /*border:2px solid red;*/

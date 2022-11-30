@@ -91,18 +91,19 @@
             <div id="menu">
                 <div class="profile">
                         <?= $this->Html->image($staff->profileImage) ?>
-                    <div></div>
+                    <div>
                         <?php
 
                         echo $this->Form->control(
-                            'profileImage',[
-                                'class' => 'form-control  rounded-4 ',
-                                'type' => 'file',
-                                'id' => 'upload_image',
-                                'onchange' => 'getImagePreview(event)',
+                            'image',[
+                            'class' => 'form-control  rounded-4 ',
+                            'type' => 'file',
+                            'onchange' => 'getImagePreview(event)',
                         ]);
-//                        $this->Html->image($staff->profileImage);
+                        $this->Html->image($staff->image);
                         ?>
+                    </div>
+
                 </div>
             </div>
             <div id="content">

@@ -1,48 +1,64 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var iterable<\App\Model\Entity\Reply> $reply
+ * @var iterable<\App\Model\Entity\Reply> $replies
+ * @var \App\Model\Entity\Ticket $ticket
+ * @var App\Controller\AppController $login
+ * @var \App\Model\Entity\Staff $submitBy
+ * @property Cake\ORM\ResultSet::$ticket
+ *
+ *
  */
+echo $this->Html->css('replyStyle');
+echo $this->Html->Script('replyJs');
 ?>
-<div class="reply index content">
-    <?= $this->Html->link(__('New Reply'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Reply') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('reply_id') ?></th>
-                    <th><?= $this->Paginator->sort('message') ?></th>
-                    <th><?= $this->Paginator->sort('ticket_id') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($reply as $reply): ?>
-                <tr>
-                    <td><?= $this->Number->format($reply->id) ?></td>
-                    <td><?= h($reply->reply_id) ?></td>
-                    <td><?= h($reply->message) ?></td>
-                    <td><?= $reply->has('ticket') ? $this->Html->link($reply->ticket->id, ['controller' => 'Tickets', 'action' => 'view', $reply->ticket->id]) : '' ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $reply->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $reply->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $reply->id], ['confirm' => __('Are you sure you want to delete # {0}?', $reply->id)]) ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+
+<div class="card">
+    <!--            -->
+    <div class="card-body" >
+        <h3 style="color:darkorange;" class="card-title">Reply</h3>
+        <?php echo "Ticket : " . $ticket->answer ?><br>
+        <?php echo "Submit by : ".$submitBy->staffName ?><br>
+        <?php echo "Assign to : ".$ticket->staff->staffName ?><br>
+        <?php echo "Submit on : ".$ticket->created ?><br>
+
     </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+    <?php if (count($replies) == null):?>
+    <?php else:?>
+    <?php foreach ($replies as $reply):?>
+        <div class="comment-widgets m-b-20 float-end">
+            <div class="d-flex flex-row comment-row">
+                <div style="padding-right: 15px"><span class="round">
+                        <?= $this->Html->image($reply->staff->profileImage)?>
+                    </span>
+                </div>
+                <div class="comment-text w-100">
+
+                    <h6 style="color:#797979;"><?= $reply->staff->staffName ?><span style="color: rgba(105,105,105,0.66)" class="date">    <?= $reply->created ?></span></h6>
+                    <div class="comment-footer">
+                    </div>
+                    <p class="m-b-5 m-t-10" style="font-size: 17px">
+
+                        <?= $reply->message ?>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    <?php endforeach;?>
+    <?php endif;?>
+    <div >
+        <?= $this->Form->create($replies) ?>
+        <div style="padding: 10px 10px">
+            <?php
+            echo $this->Form->control('message',[
+                'type'=>'textarea',
+                'placeholder'=>'Enter a message ...',
+//                'value '=>false
+            ]);
+            ?>
+            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->end() ?>
+        </div>
     </div>
-</div>
+    </div>

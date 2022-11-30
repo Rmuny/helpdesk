@@ -26,10 +26,12 @@ class TicketAssignFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'deadline' => '2022-10-12',
+                'deadline' => '2022-11-21',
                 'priority' => 'Lorem ipsum dolor sit amet',
                 'ticket_id' => 1,
                 'staff_id' => 1,
+                'created' => '2022-11-21 11:00:21',
+                'modified' => '2022-11-21 11:00:21',
             ],
         ];
         parent::init();

@@ -12,6 +12,8 @@ use Cake\ORM\Entity;
  * @property string $title
  * @property string $content
  * @property int $category_id
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Category $category
  */
@@ -31,5 +33,7 @@ class Solution extends Entity
         'content' => true,
         'category_id' => true,
         'category' => true,
+        'created' => true,
+        'modified' => true,
     ];
 }

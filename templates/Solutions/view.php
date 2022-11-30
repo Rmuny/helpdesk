@@ -6,13 +6,10 @@
 ?>
 <div class="row">
     <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Solution'), ['action' => 'edit', $solution->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Solution'), ['action' => 'delete', $solution->id], ['confirm' => __('Are you sure you want to delete # {0}?', $solution->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Solutions'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Solution'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
-        </div>
+
+        <?= $this->Html->link('<span class="fas fa-backward text-white"></span><span class="ms-2 text-white">' . __('Back') . '</span>', ['action' => 'index'],
+            ['escape' => false, 'class' => 'btn btn-success']) ?>
+
     </aside>
     <div class="column-responsive column-80">
         <div class="solutions view content">
@@ -28,7 +25,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Category') ?></th>
-                    <td><?= $solution->has('category') ? $this->Html->link($solution->category->id, ['controller' => 'Categories', 'action' => 'view', $solution->category->id]) : '' ?></td>
+                    <td><?= $solution->has('category') ? $this->Html->link($solution->category->name, ['controller' => 'Categories', 'action' => 'view', $solution->category->name]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>

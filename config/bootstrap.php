@@ -221,3 +221,8 @@ TypeFactory::map('time', StringType::class);
 //Inflector::rules('plural', ['/^(inflect)or$/i' => '\1ables']);
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
+
+const ADMIN = 16;
+const STAFF = 4;
+const ASSISTANT = 11;
+const SUPER_ADMIN = 10;

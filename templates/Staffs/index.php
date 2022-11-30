@@ -3,58 +3,61 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Staff> $staffs
  *
+ *
  */
 $this->Html->script('bootstrapModal',['block'=>true]);
 $this->Html->css('nav');
 ?>
+<div class="card-body">
 <div class="container-fluid">
     <!--        <div class="card-header">-->
-    <div class="roles index content">
+
         <div class="d-inline float-end">
             <?= $this->Html->link('<span class="fas fa-plus-circle text-white"></span><span class="ms-2 text-white">' . __('Add staff') . '</span>', ['action' => 'add'],
                 ['escape' => false, 'class' => 'btn btn-success']) ?>
         </div>
-        <h3><?= __('Staffs' ) ?></h3>
+        <h3 style="color: darkorange"><?= __('Staffs' ) ?></h3>
     </div>
 </div>
-<!--            //search-->
 
+
+<!--            //search-->
+<div class="card">
 <div class="d-inline">
     <?= $this->Form->create(null,['type'=>'get'])?>
     <div class="d-inline-flex">
         <?= $this->Form->control('key',[
             'label'=>false,
-            'placeholder' => 'Search...',
+            'placeholder' => '🔍Search...',
             'value'=>$this->request->getQuery('key')
         ])?>
-        <?= $this->Form->submit(
-            'search'
 
-        );?>
-        <?= $this->Form->end()?>
     </div>
 </div>
 
-<div class="table-responsive" style="padding-left: 10px">
+<div class="table-responsive" >
     <div >
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr >
-                <th ><?= $this->Paginator->sort('N') ?></th>
+                <th style="padding-left: 10px"><?= $this->Paginator->sort('No') ?></th>
                 <th ><?= $this->Paginator->sort('Full Name') ?></th>
                 <th ><?= $this->Paginator->sort('email') ?></th>
-                <th ><?= $this->Paginator->sort('phone') ?></th>
-                <th ><?= $this->Paginator->sort('username') ?></th>
-                <th ><?= $this->Paginator->sort('role_id') ?></th>
-                <th ><?= $this->Paginator->sort('category_id') ?></th>
-                <th><?= $this->Paginator->sort('profile') ?></th>
+                <th width="10%"><?= $this->Paginator->sort('phone') ?></th>
+                <th width="8%" ><?= $this->Paginator->sort('username') ?></th>
+                <th width="7%"><?= $this->Paginator->sort('role_id') ?></th>
+                <th width="8%"><?= $this->Paginator->sort('category_id') ?></th>
+                <th width="8%"><?= __('profile') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($staffs as $staff): ?>
+            <?php foreach ($staffs as $index => $staff): ?>
                 <tr>
-                    <td>1</td>
+                    <td style="padding-left: 10px"><?php
+                        echo $index+ $this->Paginator->counter('{{start}}');
+                        ?>
+                    </td>
                     <td><?= h($staff->staffName) ?></td>
                     <td><?= h($staff->email) ?></td>
                     <td><?= h($staff->phoneNumber) ?></td>
@@ -67,36 +70,38 @@ $this->Html->css('nav');
                     </div>
                     <td class="actions">
                         <?= $this->Html->link(
-                            '<span class="fa fa-eye"></span>View<span class="sr-only">' . __('View') . '</span>',
+                            '<span class="fa fa-eye"></span> View<span class="sr-only">' . __('View') . '</span>',
                             ['action' => 'view', $staff->id],
                             ['escape' => false, 'title' => __('View'), 'class'=>'btn text-white', 'style' => 'background-color: green']
-                        ) ?>
+                        )?>
                         <?= $this->Html->link(
-                            '<span class="fa fa-edit"></span>Edit<span class="sr-only">' . __('Edit') . '</span>',
+                            '<span class="fa fa-edit"></span> Edit<span class="sr-only">' . __('Edit') . '</span>',
                             ['action' => 'edit', $staff->id],
                             ['escape' => false, 'title' => __('Edit'), 'class'=>'btn text-white', 'style' => 'background-color: blue']
                         ) ?>
-                                                    <?php $this->Form->setTemplates([
-                                                        'confirmJs' => 'addToModal("{{formName}}"); return false;'
-                                                    ]); ?>
+
+                        <?php $this->Form->setTemplates([
+                            'confirmJs' => 'addToModal("{{formName}}"); return false;'
+                        ]); ?>
+
                         <?= $this->Form->postlink(
-                            '<span class="fa fa-trash"></span>Delete<span class="sr-only">' . __('delete') . '</span>',
+                            '🗑 Delete',
                             ['action' => 'delete', $staff->id],
-                            ['escape' => false, 'title' => __('delete'), 'class'=>'btn text-white', 'style' => 'background-color: red',
-                                'confirm' => __('Are you sure want to delete staff # {0}?',$staff->staffName),
+                            ['title' => __('delete'), 'class'=>'btn text-white', 'style' => 'background-color: red',
+                                'confirm' => __('❗Are you sure want to delete staff # {0}?',$staff->staffName),
                                 'data-bs-toggle'=>"modal",
                                 'data-bs-target'=>"#bootstrapModal"
                             ],
                         ) ?>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endforeach; $index++?>
             </tbody>
         </table>
     </div>
     <?=$this->Form->end()?>
 </div>
-
+</div>
 <nav aria-label="Page navigation example">
     <?php
     $this->Paginator->setTemplates([
@@ -117,10 +122,13 @@ $this->Html->css('nav');
             </ul>
         </nav>
         <div class="float-end" >
-        <?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?>
+            <?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?>
         </div>
-        </div>
+    </div>
 </nav>
+
+
+
 
 
 <div class="modal" id="bootstrapModal" tabindex="-1">
@@ -140,3 +148,12 @@ $this->Html->css('nav');
         </div>
     </div>
 </div>
+
+<br>
+<br>
+<!--<div id="footer" >-->
+<!--    <p style="font-size: 13px">-->
+<!--    @ HelpDesk.All Right Reserved. | Created by Rathmuny-->
+<!--    </p>-->
+<!--</div>-->
+<!---->

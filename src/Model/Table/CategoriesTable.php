@@ -43,7 +43,7 @@ class CategoriesTable extends Table
         parent::initialize($config);
 
         $this->setTable('categories');
-        $this->setDisplayField('id');
+        $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -54,8 +54,10 @@ class CategoriesTable extends Table
         $this->hasMany('Staffs', [
             'foreignKey' => 'category_id',
         ]);
+        $this->hasMany('Tickets', [
+            'foreignKey' => 'category_id',
+        ]);
     }
-
     /**
      * Default validation rules.
      *
@@ -78,3 +80,4 @@ class CategoriesTable extends Table
         return $validator;
     }
 }
+

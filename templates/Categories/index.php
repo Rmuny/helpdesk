@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Category> $categories
  */
+$this->Html->script('bootstrapModal',['block'=>true]);
+
 ?>
 <div class="container-fluid">
     <!--        <div class="card-header">-->
@@ -23,9 +25,9 @@
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
-                <th><?= $this->Paginator->sort('N.') ?></th>
+                <th style="padding-left: 10px"><?= $this->Paginator->sort('No') ?></th>
                 <th style="width: 10%"><?= $this->Paginator->sort('name') ?></th>
-                <th style="width: 30%"><?= $this->Paginator->sort('description') ?></th>
+                <th style="width: 39%"><?= $this->Paginator->sort('description') ?></th>
 
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th><?= $this->Paginator->sort('modified') ?></th>
@@ -33,9 +35,11 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($categories as $category): ?>
+            <?php foreach ($categories as $index => $category): ?>
                 <tr>
-                    <td><?= $this->Number->format($category->id) ?></td>
+                    <td style="padding-left: 10px"><?php
+                        echo $index+1;
+                        ?></td>
                     <td><?= h($category->name) ?></td>
                     <td><?= h($category->description) ?></td>
 
@@ -43,12 +47,12 @@
                     <td><?= h($category->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(
-                            '<span class="fa fa-eye"></span>View<span class="sr-only">' . __('View') . '</span>',
+                            '<span class="fa fa-eye"></span> View<span class="sr-only">' . __('View') . '</span>',
                             ['action' => 'view', $category->id],
                             ['escape' => false, 'title' => __('View'), 'class'=>'btn text-white', 'style' => 'background-color: green']
                         ) ?>
                         <?= $this->Html->link(
-                            '<span class="fa fa-edit"></span>Edit<span class="sr-only">' . __('Edit') . '</span>',
+                            '<span class="fa fa-edit"></span> Edit<span class="sr-only">' . __('Edit') . '</span>',
                             ['action' => 'edit', $category->id],
                             ['escape' => false, 'title' => __('Edit'), 'class'=>'btn text-white', 'style' => 'background-color: blue']
                         ) ?>
@@ -56,17 +60,17 @@
                             'confirmJs' => 'addToModal("{{formName}}"); return false;'
                         ]); ?>
                         <?= $this->Form->postlink(
-                            '<span class="fa fa-trash"></span>Delete<span class="sr-only">' . __('delete') . '</span>',
+                            '🗑 Delete',
                             ['action' => 'delete', $category->id],
                             ['escape' => false, 'title' => __('delete'), 'class'=>'btn text-white', 'style' => 'background-color: red',
-                                'confirm' => __('Are you sure want to delete staff # {0}?',$category->staffName),
+                                'confirm' => __('❗Are you sure want to delete category # {0}?',$category->name),
                                 'data-bs-toggle'=>"modal",
                                 'data-bs-target'=>"#bootstrapModal"
                             ],
                         ) ?>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endforeach; $index++?>
             </tbody>
         </table>
     </div>

@@ -22,22 +22,19 @@ if (isset($permissions))
                 <div class="nav">
                     <?php
 
-                    echo $this->Html->link('<span class="fas fa-user m-2"></span><span class="ml-2 text-white-50"> ' . __('Dashboard') . '</span>',
-                        ['controller' => 'Staffs', 'action' => 'index', 'plugin' => false, 'prefix' => false],
+                    echo $this->Html->link('<span class="fas fa-table m-2"></span><span class="ml-2 text-white-50"> ' . __('Dashboard') . '</span>',
+                        ['controller' => 'Tickets', 'action' => 'dashboard', 'plugin' => false, 'prefix' => false],
                         ['escape' => false, 'class' => 'nav-link']
                     );
                     ?>
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
-                        <div class="sb-nav-link-icon"><i class="fas fa-user-astronaut text-white"></i></div>
-                        <?= __('Admin') ?>
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseUsers" >
+                        <span class="fas fa-assistive-listening-systems m-2"></span><span class="ml-2 text-white-50">
+                            <?= __('Admin') ?>
                     </a>
 
-                    <div class="collapse" id="collapseUsers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
                             <!-- Order -->
                             <?php
-
                             echo $this->Html->link('<span class="fas fa-user m-2"></span><span class="ml-2 text-white-50"> ' . __('Staffs') . '</span>',
                                 ['controller' => 'Staffs', 'action' => 'index', 'plugin' => false, 'prefix' => false],
                                 ['escape' => false, 'class' => 'nav-link']
@@ -48,28 +45,32 @@ if (isset($permissions))
                                 ['escape' => false, 'class' => 'nav-link']
                             );
 
-                            echo $this->Html->link('<span class="fas fa-star"></span><span class="ml-2 text-white-50"> ' . __('Status') . '</span>',
+                            echo $this->Html->link('<span class="fas fa-star m-2"></span><span class="ml-2 text-white-50"> ' . __('Status') . '</span>',
                                 ['controller' => 'Status', 'action' => 'index', 'plugin' => false, 'prefix' => false],
                                 ['escape' => false, 'class' => 'nav-link']
                             );
 
-                            echo $this->Html->link('<span class="fas fa-address-card m-2"></span><span class="ml-2 text-white-50"> ' . __('Solution') . '</span>',
-                                ['controller' => 'Permissions', 'action' => 'index', 'plugin' => false, 'prefix' => false],
+                            echo $this->Html->link('<span  class="fas fa-bookmark m-2" aria-hidden="true"></span><span class="ml-2 text-white-50"> ' . __('Solutions') . '</span>',
+                                ['controller' => 'Solutions', 'action' => 'index', 'plugin' => false, 'prefix' => false],
                                 ['escape' => false, 'class' => 'nav-link']
                             );
-                            echo $this->Html->link('<span class="fas fa-address-card m-2"></span><span class="ml-2 text-white-50"> ' . __('Role') . '</span>',
+                            echo $this->Html->link('<span class="fas fa-tasks m-2"></span><span class="ml-2 text-white-50"> ' . __('Roles') . '</span>',
                                 ['controller' => 'Roles', 'action' => 'index', 'plugin' => false, 'prefix' => false],
+                                ['escape' => false, 'class' => 'nav-link']
+                            );
+
+                            echo $this->Html->link('<span class="fa fa-question m-2" aria-hidden="true"></span><span class="ml-2 text-white-50"> ' . __('Tickets') . '</span>',
+                                ['controller' => 'Tickets', 'action' => 'index', 'plugin' => false, 'prefix' => false],
                                 ['escape' => false, 'class' => 'nav-link']
                             );
 
                             ?>
                         </nav>
-
                     </div>
                     <?php
 
-                    echo $this->Html->link('<span class="fas fa-user m-2"></span><span class="ml-2 text-white-50"> ' . __('Report') . '</span>',
-                        ['controller' => 'Staffs', 'action' => 'index', 'plugin' => false, 'prefix' => false],
+                    echo $this->Html->link('<span class="fas fa-book m-2"></span><span class="ml-2 text-white-50"> ' . __('Report') . '</span>',
+                        ['controller' => 'Tickets', 'action' => 'report', 'plugin' => false, 'prefix' => false],
                         ['escape' => false, 'class' => 'nav-link']
                     );
                     ?>

@@ -24,11 +24,11 @@
                 </tr>
                 <tr>
                     <th><?= __('Ticket') ?></th>
-                    <td><?= $ticketAssign->has('ticket') ? $this->Html->link($ticketAssign->ticket->id, ['controller' => 'Tickets', 'action' => 'view', $ticketAssign->ticket->id]) : '' ?></td>
+                    <td><?= $ticketAssign->has('ticket') ? $this->Html->link($ticketAssign->ticket->answer, ['controller' => 'Tickets', 'action' => 'view', $ticketAssign->ticket->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Staff') ?></th>
-                    <td><?= $ticketAssign->has('staff') ? $this->Html->link($ticketAssign->staff->id, ['controller' => 'Staffs', 'action' => 'view', $ticketAssign->staff->id]) : '' ?></td>
+                    <td><?= $ticketAssign->has('staff') ? $this->Html->link($ticketAssign->staff->staffName, ['controller' => 'Staffs', 'action' => 'view', $ticketAssign->staff->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>
@@ -37,6 +37,14 @@
                 <tr>
                     <th><?= __('Deadline') ?></th>
                     <td><?= h($ticketAssign->deadline) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Created') ?></th>
+                    <td><?= h($ticketAssign->created) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Modified') ?></th>
+                    <td><?= h($ticketAssign->modified) ?></td>
                 </tr>
             </table>
         </div>

@@ -28,6 +28,8 @@ class TicketsTableTest extends TestCase
         'app.Staffs',
         'app.Reply',
         'app.TicketAssign',
+        'app.Status',
+        'app.Categories',
     ];
 
     /**

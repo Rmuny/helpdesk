@@ -3,18 +3,14 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Reply $reply
  * @var string[]|\Cake\Collection\CollectionInterface $tickets
+ * @var string[]|\Cake\Collection\CollectionInterface $staffs
  */
 ?>
 <div class="row">
     <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $reply->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $reply->id), 'class' => 'side-nav-item']
-            ) ?>
-            <?= $this->Html->link(__('List Reply'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link('<span class="fas fa-backward text-white"></span><span class="ms-2 text-white">' . __('Back') . '</span>', ['action' => 'index'],
+                ['escape' => false, 'class' => 'btn btn-success']) ?>
+        </div>
         </div>
     </aside>
     <div class="column-responsive column-80">
@@ -23,9 +19,9 @@
             <fieldset>
                 <legend><?= __('Edit Reply') ?></legend>
                 <?php
-                    echo $this->Form->control('reply_id');
-                    echo $this->Form->control('message');
-                    echo $this->Form->control('ticket_id', ['options' => $tickets]);
+                    echo $this->Form->control('message',[
+                        'type'=>'textarea'
+                    ]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

@@ -14,7 +14,8 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\StaffsTable&\Cake\ORM\Association\BelongsTo $Staffs
  * @property \App\Model\Table\ReplyTable&\Cake\ORM\Association\HasMany $Reply
  * @property \App\Model\Table\TicketAssignTable&\Cake\ORM\Association\HasMany $TicketAssign
- *
+ * @property \App\Model\Table\TicketsTable&\Cake\ORM\Association\HasMany $Status
+ * @property \App\Model\Table\TicketsTable&\Cake\ORM\Association\HasMany $Categories
  * @method \App\Model\Entity\Ticket newEmptyEntity()
  * @method \App\Model\Entity\Ticket newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Ticket[] newEntities(array $data, array $options = [])
@@ -42,7 +43,7 @@ class TicketsTable extends Table
         parent::initialize($config);
 
         $this->setTable('tickets');
-        $this->setDisplayField('id');
+        $this->setDisplayField('answer');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Staffs', [
@@ -55,8 +56,15 @@ class TicketsTable extends Table
         $this->hasMany('TicketAssign', [
             'foreignKey' => 'ticket_id',
         ]);
+        $this->belongsTo('Status', [
+            'foreignKey' => 'status_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Categories', [
+            'foreignKey' => 'category_id',
+            'joinType' => 'INNER',
+        ]);
     }
-
     /**
      * Default validation rules.
      *
@@ -66,26 +74,20 @@ class TicketsTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->scalar('ticketNumber')
-            ->maxLength('ticketNumber', 255)
-            ->requirePresence('ticketNumber', 'create')
-            ->notEmptyString('ticketNumber');
-
-        $validator
             ->scalar('answer')
             ->maxLength('answer', 255)
             ->requirePresence('answer', 'create')
             ->notEmptyString('answer');
 
         $validator
-            ->scalar('status')
-            ->maxLength('status', 255)
-            ->requirePresence('status', 'create')
-            ->notEmptyString('status');
+            ->integer('status_id')
+//            ->maxLength('status_id', 255);
+//           ->requirePresence('status_id', 'create')
+            ->notEmptyString('status_id');
 
         $validator
             ->integer('staff_id')
-            ->notEmptyString('staff_id');
+            ->allowEmptyString('staff_id');
 
         return $validator;
     }
@@ -100,6 +102,8 @@ class TicketsTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn('staff_id', 'Staffs'), ['errorField' => 'staff_id']);
+        $rules->add($rules->existsIn('status_id', 'Status'), ['errorField' => 'status_id']);
+        $rules->add($rules->existsIn('category_id', 'Categories'), ['errorField' => 'category_id']);
 
         return $rules;
     }

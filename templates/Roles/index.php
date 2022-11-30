@@ -7,14 +7,15 @@ $this->Html->script('bootstrapModal',['block'=>true]);
 $this->Html->css('nav');
 ?>
 
+<div class="card-body">
 <div class="container-fluid">
     <!--        <div class="card-header">-->
-    <div class="roles index content">
+
         <div class="d-inline float-end">
             <?= $this->Html->link('<span class="fas fa-plus-circle text-white"></span><span class="ms-2 text-white">' . __('Add Role') . '</span>', ['action' => 'add'],
                 ['escape' => false, 'class' => 'btn btn-success']) ?>
         </div>
-        <h3><?= __('Roles' ) ?></h3>
+        <h3 style="color: darkorange"><?= __('Roles' ) ?></h3>
     </div>
 </div>
 
@@ -23,29 +24,28 @@ $this->Html->css('nav');
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr >
-                <th style="width: 10%"><?= $this->Paginator->sort('N') ?></th>
-                <th style="width: 20%"><?= $this->Paginator->sort('Name') ?></th>
-                <th style="width: 52%"><?= $this->Paginator->sort('Description') ?></th>
+                <th style="padding-left: 10px" width="10%"><?= $this->Paginator->sort('No') ?></th>
+                <th style="width: 30%"><?= $this->Paginator->sort('Name') ?></th>
+                <th style="width: 51.5%"><?= $this->Paginator->sort('Description') ?></th>
 
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($roles as $role): ?>
+            <?php foreach ($roles as $index =>$role): ?>
                 <tr>
-                    <td>1</td>
-                    <td><?= h($role->name) ?></td>
+                    <td style="padding-left: 10px"><?php
+                        echo $index+ $this->Paginator->counter('{{start}}');
+                        ?>
+                    </td>
+                    <td ><?= h($role->name) ?></td>
                     <td><?= h($role->description)?></td>
 
 
                     <td class="actions">
+
                         <?= $this->Html->link(
-                            '<span class="fa fa-eye"></span>View<span class="sr-only">' . __('View') . '</span>',
-                            ['action' => 'view', $role->id],
-                            ['escape' => false, 'title' => __('View'), 'class'=>'btn text-white', 'style' => 'background-color: green']
-                        ) ?>
-                        <?= $this->Html->link(
-                            '<span class="fa fa-edit"></span>Edit<span class="sr-only">' . __('Edit') . '</span>',
+                            '<span class="fa fa-edit"></span> Edit<span class="sr-only">' . __('Edit') . '</span>',
                             ['action' => 'edit', $role->id],
                             ['escape' => false, 'title' => __('Edit'), 'class'=>'btn text-white', 'style' => 'background-color: blue']
                         ) ?>

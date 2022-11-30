@@ -26,9 +26,11 @@ class ReplyFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'reply_id' => 'Lorem ipsum dolor sit amet',
                 'message' => 'Lorem ipsum dolor sit amet',
                 'ticket_id' => 1,
+                'Staff_id' => 1,
+                'Reply_id' => 1,
+                'created' => '2022-11-18 12:06:21',
             ],
         ];
         parent::init();

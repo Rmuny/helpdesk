@@ -7,9 +7,9 @@
 ?>
 <div class="row">
     <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Solutions'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link('<span class="fas fa-backward text-white"></span><span class="ms-2 text-white">' . __('Back') . '</span>', ['action' => 'index'],
+                ['escape' => false, 'class' => 'btn btn-success']) ?>
+
         </div>
     </aside>
     <div class="column-responsive column-80">
@@ -19,7 +19,9 @@
                 <legend><?= __('Add Solution') ?></legend>
                 <?php
                     echo $this->Form->control('title');
-                    echo $this->Form->control('content');
+                    echo $this->Form->control('content',[
+                        'type'=>'textarea',
+                    ]);
                     echo $this->Form->control('category_id', ['options' => $categories]);
                 ?>
             </fieldset>

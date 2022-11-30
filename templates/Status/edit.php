@@ -4,16 +4,11 @@
  * @var \App\Model\Entity\Status $status
  */
 ?>
-<div class="row">
+
     <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $status->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $status->id), 'class' => 'side-nav-item']
-            ) ?>
-            <?= $this->Html->link(__('List Status'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+        <div style="padding:21px 21px" >
+            <?= $this->Html->link('<span class="fas fa-backward text-white"></span><span class="ms-2 text-white">' . __('Back') . '</span>', ['action' => 'index'],
+                ['escape' => false, 'class' => 'btn btn-success']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
@@ -24,9 +19,13 @@
                 <?php
                     echo $this->Form->control('name');
                 ?>
+                <?php
+                echo $this->Form->control('description',['type'=>'textarea']
+                );
+                ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>
-</div>
+

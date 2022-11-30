@@ -24,6 +24,7 @@ class ReplyControllerTest extends TestCase
     protected $fixtures = [
         'app.Reply',
         'app.Tickets',
+        'app.Staffs',
     ];
 
     /**

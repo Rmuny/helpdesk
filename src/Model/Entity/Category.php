@@ -16,6 +16,7 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Solution[] $solutions
  * @property \App\Model\Entity\Staff[] $staffs
+ * @property \App\Model\Entity\Staff[] $tickets
  */
 class Category extends Entity
 {
@@ -37,3 +38,4 @@ class Category extends Entity
         'staffs' => true,
     ];
 }
+

@@ -13,6 +13,8 @@ use Cake\ORM\Entity;
  * @property string $priority
  * @property int $ticket_id
  * @property int $staff_id
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Ticket $ticket
  * @property \App\Model\Entity\Staff $staff
@@ -33,7 +35,10 @@ class TicketAssign extends Entity
         'priority' => true,
         'ticket_id' => true,
         'staff_id' => true,
+        'created' => true,
+        'modified' => true,
         'ticket' => true,
         'staff' => true,
     ];
+
 }

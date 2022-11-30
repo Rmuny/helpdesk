@@ -12,7 +12,7 @@ use Cake\Validation\Validator;
  * Reply Model
  *
  * @property \App\Model\Table\TicketsTable&\Cake\ORM\Association\BelongsTo $Tickets
- * @property \App\Model\Table\ReplyTable&\Cake\ORM\Association\HasMany $Reply
+ * @property \App\Model\Table\StaffsTable&\Cake\ORM\Association\BelongsTo $Staffs
  *
  * @method \App\Model\Entity\Reply newEmptyEntity()
  * @method \App\Model\Entity\Reply newEntity(array $data, array $options = [])
@@ -27,6 +27,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Reply[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\Reply[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\Reply[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ReplyTable extends Table
 {
@@ -44,12 +46,15 @@ class ReplyTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
+        $this->addBehavior('Timestamp');
+
         $this->belongsTo('Tickets', [
             'foreignKey' => 'ticket_id',
             'joinType' => 'INNER',
         ]);
-        $this->hasMany('Reply', [
-            'foreignKey' => 'reply_id',
+        $this->belongsTo('Staffs', [
+            'foreignKey' => 'Staff_id',
+            'joinType' => 'INNER',
         ]);
     }
 
@@ -62,12 +67,6 @@ class ReplyTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->scalar('reply_id')
-            ->maxLength('reply_id', 255)
-            ->requirePresence('reply_id', 'create')
-            ->notEmptyString('reply_id');
-
-        $validator
             ->scalar('message')
             ->maxLength('message', 255)
             ->requirePresence('message', 'create')
@@ -76,6 +75,15 @@ class ReplyTable extends Table
         $validator
             ->integer('ticket_id')
             ->notEmptyString('ticket_id');
+
+        $validator
+            ->integer('Staff_id')
+            ->notEmptyString('Staff_id');
+
+        $validator
+            ->integer('Reply_id')
+            ->requirePresence('Reply_id', 'create')
+            ->notEmptyString('Reply_id');
 
         return $validator;
     }
@@ -90,6 +98,7 @@ class ReplyTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn('ticket_id', 'Tickets'), ['errorField' => 'ticket_id']);
+        $rules->add($rules->existsIn('Staff_id', 'Staffs'), ['errorField' => 'Staff_id']);
 
         return $rules;
     }

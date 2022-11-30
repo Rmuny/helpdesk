@@ -9,12 +9,15 @@ use Cake\ORM\Entity;
  * Reply Entity
  *
  * @property int $id
- * @property string $reply_id
  * @property string $message
  * @property int $ticket_id
- *
+ * @property int $Staff_id
+ * @property int $Reply_id
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
+ * *
  * @property \App\Model\Entity\Ticket $ticket
- * @property \App\Model\Entity\Reply[] $reply
+ * @property \App\Model\Entity\Staff $staff
  */
 class Reply extends Entity
 {
@@ -28,10 +31,13 @@ class Reply extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
-        'reply_id' => true,
         'message' => true,
         'ticket_id' => true,
+        'Staff_id' => true,
+        'Reply_id' => true,
+        'created' => true,
         'ticket' => true,
-        'reply' => true,
+        'staff' => true,
+        'modified' => true,
     ];
 }

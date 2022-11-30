@@ -14,21 +14,20 @@ class CreateTickets extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('tickets');
-        $table->addColumn('ticketNumber', 'string', [
+        $table = $this->table('tickets');;
+        $table->addColumn('status_id', 'integer', [
             'default' => null,
-            'limit' => 255,
+            'limit' => 11,
             'null' => false,
         ]);
-        $table->addColumn('answer', 'string', [
+        $table->addColumn('answer', 'text', [
             'default' => null,
-            'limit' => 255,
             'null' => false,
         ]);
-        $table->addColumn('status', 'string', [
+        $table->addColumn('staff_id', 'integer', [
             'default' => null,
-            'limit' => 255,
-            'null' => false,
+            'limit' => 11,
+            'null' => true,
         ]);
         $table->create();
     }

@@ -20,8 +20,12 @@ use Cake\ORM\Entity;
  * @property string $username
  * @property string $password
  * @property string $role_id
+ * @property string $category_id
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Role $role
+ * @property \App\Model\Entity\Category $category
  * @property \App\Model\Entity\TicketAssign[] $ticket_assign
  * @property \App\Model\Entity\Ticket[] $tickets
  */
@@ -50,8 +54,12 @@ class Staff extends Entity
         'password' => true,
         'role_id' => true,
         'role' => true,
+        'category_id' => true,
+        'category' => true,
         'ticket_assign' => true,
         'tickets' => true,
+        'created' => true,
+        'modified' => true,
     ];
 
     /**

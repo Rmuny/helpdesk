@@ -2,21 +2,24 @@
 declare(strict_types=1);
 
 namespace App\Model\Entity;
-
 use Cake\ORM\Entity;
 
 /**
  * Ticket Entity
  *
  * @property int $id
- * @property string $ticketNumber
+ * @property int|null $status_id
  * @property string $answer
- * @property string $status
  * @property int $staff_id
- *
+ * @property int $category_id
+
  * @property \App\Model\Entity\Staff $staff
  * @property \App\Model\Entity\Reply[] $reply
  * @property \App\Model\Entity\TicketAssign[] $ticket_assign
+ * @property \App\Model\Entity\Status $status
+ * @property \App\Model\Entity\Category $category
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  */
 class Ticket extends Entity
 {
@@ -30,12 +33,17 @@ class Ticket extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
-        'ticketNumber' => true,
+        'status_id' => true,
         'answer' => true,
-        'status' => true,
         'staff_id' => true,
+        'submit_by'=> true,
+        'category_id' => true,
         'staff' => true,
         'reply' => true,
         'ticket_assign' => true,
+        'status' => true,
+        'category' => true,
+        'created' => true,
+        'modified' => true,
     ];
 }

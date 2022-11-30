@@ -30,7 +30,7 @@ echo $this->Html->css('login');
                                 <?= $this->Form->create() ?>
 
                                 <div style="color:#011b18;">
-                                    <?= $this->Form->control('username', ['class' => 'form-control form-control-lg', "placeholder"=>"Enter Your Username",]) ?>
+                                    <?= $this->Form->control('username', ['class' => 'form-control form-control-lg', "placeholder"=>"Enter Your Username",]) ?><br>
                                     <?= $this->Form->control('password', ['class' => 'form-control form-control-lg', "placeholder"=>"********",]) ?>
                                 </div>
                                 <div class="my-2 text-end">
@@ -38,11 +38,9 @@ echo $this->Html->css('login');
                                 </div>
                                 <div class="my-2 text-end">
                                 </div>
-
                                 <?= $this->Form->button(__('Login'), ['class' => 'btn btn-dark btn-lg btn-block']); ?>
                                 <?= $this->Form->end() ?>
                             </div>
-
                         </div>
                     </div>
                 </div>

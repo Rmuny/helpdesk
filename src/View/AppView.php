@@ -27,6 +27,7 @@ use Cake\View\View;
 class AppView extends View
 {
     private ?\Cake\View\Helper $Article;
+    private ?\Cake\View\Helper $Auth;
 
     /**
      * Initialization hook method.
@@ -39,6 +40,12 @@ class AppView extends View
      */
     public function initialize(): void
     {
-        $this->loadHelper('Paginator',['templets'=> 'Paginator-templets']);
+        parent::initialize();
+//        $this->loadHelper('Paginator', ['templates' => 'paginator-templates']);
     }
+
+    public function redirect(array $array)
+    {
+    }
+
 }

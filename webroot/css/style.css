@@ -3,7 +3,7 @@ a.disabled {
     pointer-events: none;
 }
 a:hover {
-    color: #15848F;
+    color: darkorange;
 }
 a {
     color: #4e4e4e;
@@ -317,7 +317,7 @@ table tr th {
 
     text-align: center;
     padding: 0.5625rem 0.625rem;
-    font-size: 1.5rem;
+    font-size: 1.65rem;
     color: #4e4e4e;
     text-align: left;
 }

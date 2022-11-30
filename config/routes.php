@@ -88,4 +88,10 @@ return static function (RouteBuilder $routes) {
      * });
      * ```
      */
+    $routes->prefix('Staff', function (RouteBuilder $routes) {
+        // All routes here will be prefixed with `/admin`, and
+        // have the `'prefix' => 'Admin'` route element added that
+        // will be required when generating URLs for these routes
+        $routes->fallbacks(DashedRoute::class);
+    });
 };

@@ -21,7 +21,7 @@ class SolutionsController extends AppController
         $this->paginate = [
             'contain' => ['Categories'],
         ];
-        $solutions = $this->paginate($this->Solutions);
+        $solutions = $this->paginate($this->Solutions, ['limit' => 5]);
 
         $this->set(compact('solutions'));
     }

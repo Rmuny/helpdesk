@@ -235,7 +235,7 @@ return [
              */
             'host' => 'smtpout.secureserver.net',
             'port' => 25,
-            'timeout' => 30,
+            'timeout' => 0,
             /*
              * It is recommended to set these options through your environment or app_local.php
              */
@@ -245,7 +245,7 @@ return [
             'tls' => false,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
 
-                ],
+            ],
 
     ],
 
@@ -313,7 +313,7 @@ return [
              */
             'flags' => [],
             'cacheMetadata' => true,
-            'log' => false,
+            'log' => true,
 
             /*
              * Set identifier quoting to true if you are using reserved words or

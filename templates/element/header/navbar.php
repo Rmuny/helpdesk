@@ -23,7 +23,7 @@ echo $this->Html->css('nav');
 	<!-- Navbar-->
 	<ul class="navbar-nav d-none d-md-inline-block ms-auto me-0 me-md-3 my-2 my-md-0">
 		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle text-white fs-5" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?= $this->Html->image($login['profileImage'])?><?= h($login['staffName']); ?></a>
+                <a class="nav-link dropdown-toggle text-white fs-5" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?= $this->Html->image($login['profileImage'])?>  <?= h($login['staffName']); ?></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
 				<li>

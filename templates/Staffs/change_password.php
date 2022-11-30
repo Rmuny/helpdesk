@@ -8,8 +8,6 @@
     echo $this->Html->css('forgotpassword');
     ?>
     <section class="vh-100" >
-
-
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col col-xl-6">
@@ -18,10 +16,10 @@
 
 
                             <div class="card-body text-black">
-                                <button style="border-radius: 10px ">
-                                    <?= $this->Html->link(__('< Back'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-
-                                </button>
+                                <div class="d-inline ">
+                                    <?= $this->Html->link( __('⬅') . '</span>', ['action' => 'index'],
+                                        ['escape' => false,]) ?>
+                                </div>
                                 <div style="padding-left: 180px" class="d-flex align-items-center mb-3 pb-1">
                                     <img style="width: 150px;" src="https://www.shareicon.net/data/2017/01/23/874882_password_512x512.png" alt="" />
                                 </div>

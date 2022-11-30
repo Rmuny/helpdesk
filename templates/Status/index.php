@@ -5,19 +5,18 @@
  */
 ?>
 
-
+<div class="card-body">
 <div class="container-fluid">
     <!--        <div class="card-header">-->
-    <div class="roles index content">
-        <div class="d-inline float-end">
-            <?= $this->Html->link('<span class="fas fa-plus-circle text-white"></span><span class="ms-2 text-white">' . __('Add Status') . '</span>', ['action' => 'add'],
-                ['escape' => false, 'class' => 'btn btn-success']) ?>
-        </div>
-        <h3><?= __('Status' ) ?></h3>
+
+    <div class="d-inline float-end">
+        <?= $this->Html->link('<span class="fas fa-plus-circle text-white"></span><span class="ms-2 text-white">' . __('Add status') . '</span>', ['action' => 'add'],
+            ['escape' => false, 'class' => 'btn btn-success']) ?>
+    </div>
+        <h3 style="color: darkorange;"><?= __('Status' ) ?></h3>
     </div>
 </div>
 <!--            //search-->
-
 
 
 <div class="table-responsive" style="padding-left: 10px">
@@ -25,37 +24,34 @@
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
-                <th style="width: 10%"><?= $this->Paginator->sort('N.') ?></th>
-                <th style="width: 30%"><?= $this->Paginator->sort('name') ?></th>
+                <th style="padding-left: 10px" width="5%"><?= $this->Paginator->sort('No') ?></th>
+                <th ><?= $this->Paginator->sort('name') ?></th>
+                <th style="width: 15%"><?= $this->Paginator->sort('description') ?></th>
+
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th><?= $this->Paginator->sort('modified') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($status as $status): ?>
+            <?php foreach ($status as $index => $status): ?>
                 <tr>
-                    <td><?= $this->Number->format($status->id) ?></td>
-                    <td><?= h($status->name) ?></td>
+                    <td style="padding-left: 10px"><?php echo $index+1;?></td>
+                    <td ><?= h($status->name) ?></td>
+                    <td width="29%"><?= h($status->description) ?></td>
 
-                    <td><?= h($status->created) ?></td>
-                    <td><?= h($status->modified) ?></td>
+                    <td width="20%"><?= h($status->created) ?></td>
+                    <td width="28.5%"><?= h($status->modified) ?></td>
 
                     <td class="actions">
+
                         <?= $this->Html->link(
-                            '<span class="fa fa-eye"></span>View<span class="sr-only">' . __('View') . '</span>',
-                            ['action' => 'view', $status->id],
-                            ['escape' => false, 'title' => __('View'), 'class'=>'btn text-white', 'style' => 'background-color: green']
-                        ) ?>
-                        <?= $this->Html->link(
-                            '<span class="fa fa-edit"></span>Edit<span class="sr-only">' . __('Edit') . '</span>',
+                            '<span class="fa fa-edit"></span> Edit<span class="sr-only">' . __('Edit') . '</span>',
                             ['action' => 'edit', $status->id],
                             ['escape' => false, 'title' => __('Edit'), 'class'=>'btn text-white', 'style' => 'background-color: blue']
                         ) ?>
-
                     </td>
-
-            <?php endforeach; ?>
+            <?php endforeach; $index++?>
             </tbody>
         </table>
     </div>
@@ -81,7 +77,6 @@
     </div>
 </nav>
 
-
 <div class="modal" id="bootstrapModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -99,6 +94,7 @@
         </div>
     </div>
 </div>
+
 
 
 

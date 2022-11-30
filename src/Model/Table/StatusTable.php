@@ -42,7 +42,6 @@ class StatusTable extends Table
         $this->setTable('status');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
-
         $this->addBehavior('Timestamp');
     }
 

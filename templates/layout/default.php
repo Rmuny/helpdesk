@@ -19,6 +19,10 @@ $cakeDescription = 'HelpDesk';
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
@@ -31,7 +35,9 @@ $cakeDescription = 'HelpDesk';
         ['type' => 'icon']
     );
     ?>
-
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
 
@@ -47,9 +53,10 @@ $cakeDescription = 'HelpDesk';
     <?= $this->Html->script('jquery-ui.js?v=1.13.0') ?>
     <?= $this->Html->script('Chart.min.js?v=2.8.0') ?>
 
+    <?= $this->Html->script('bootstrapModal.js') ?>
+
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
 
 </head>
 <body>
@@ -70,6 +77,8 @@ $cakeDescription = 'HelpDesk';
 </div>
 <footer>
 </footer>
+
+<?= $this->fetch('script') ?>
 </body>
 </html>
 
